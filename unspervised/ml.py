@@ -19,7 +19,7 @@ class K_Means:
 		#initialize the centroids, the first 'k' elements in the dataset will be our initial centroids
 		for i in range(self.k):
 			self.centroids[i] = data[i]
-
+		print (self.centroids)
 		#begin iterations
 		for i in range(self.max_iterations):
 			self.classes = {}
@@ -58,17 +58,17 @@ class K_Means:
 		return classification
 
 def main():
-	dataset = pd.read_csv('Iris.csv')
+	dataset = pd.read_csv('USArrests.csv')
 	X = dataset.iloc[:, [1, 2, 3, 4]].values
 
 	#X = df.values #returns a numpy array
 	
-	km = K_Means(3)
+	km = K_Means(4)
 	km.fit(X)
 
 	# Plotting starts here
 	colors = 10*["r", "g", "c", "b", "k"]
-	print (km.classes)
+	#print (km.classes)
 	for centroid in km.centroids:
 		plt.scatter(km.centroids[centroid][0], km.centroids[centroid][1], s = 130, marker = "x")
 

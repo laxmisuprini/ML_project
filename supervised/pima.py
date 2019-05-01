@@ -2,7 +2,7 @@ from random import seed
 from random import randrange
 from csv import reader
 from math import sqrt
-from sklearn.metrics import precision_score ,recall_score, f1_score
+from sklearn.metrics import precision_score ,recall_score, f1_score, confusion_matrix
  
 # Load a CSV file
 def load_csv(filename):
@@ -78,6 +78,7 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 		pre.append(precision)
 		recall.append(recalls)
 		f1.append(F1)
+	print (confusion_matrix(actual,predicted))
 
 	return scores,pre,recall,f1
  
