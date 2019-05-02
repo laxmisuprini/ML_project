@@ -61,10 +61,10 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 	f1 =list()
 	for fold in folds:
 		train_set = list(folds)
-		train_set.remove(fold)
+		train_set.remove(fold)   #for train set
 		train_set = sum(train_set, [])
 		test_set = list()
-		for row in fold:
+		for row in fold:         #forr test set
 			row_copy = list(row)
 			test_set.append(row_copy)
 			row_copy[-1] = None
@@ -78,7 +78,7 @@ def evaluate_algorithm(dataset, algorithm, n_folds, *args):
 		pre.append(precision)
 		recall.append(recalls)
 		f1.append(F1)
-	print (confusion_matrix(actual,predicted))
+	#print (confusion_matrix(actual,predicted))
 
 	return scores,pre,recall,f1
  
@@ -214,11 +214,11 @@ for i in range(0, len(dataset[0])-1):
 str_column_to_int(dataset, len(dataset[0])-1)
 # evaluate algorithm
 n_folds = 5
-max_depth = 10
-min_size = 1
-sample_size = 1.0
+max_depth = 10 # max depth of the tree
+min_size = 1   #min size of the branches
+sample_size = 1.0   #min size to create sub samples of the dataset
 n_features = int(sqrt(len(dataset[0])-1))
-for n_trees in [1, 5, 10]:
+for n_trees in [1, 5, 10]: # no of of trees that the dataset is divided into and the mergen to give the result.Implementation of the Classification and Regression Trees (CART)
 	scores = evaluate_algorithm(dataset, random_forest, n_folds, max_depth, min_size, sample_size, n_trees, n_features)
 	print('Trees: %d' % n_trees)
 	#print('Scores: %s' % scores[0])
@@ -226,5 +226,4 @@ for n_trees in [1, 5, 10]:
 	print('precision:%.3f%%'%(sum(scores[1])/float(len(scores[1]))*100))
 	print('recall:%.3f%%'%(sum(scores[2])/float(len(scores[2]))*100))
 	print('f1:%.3f%%'%(sum(scores[3])/float(len(scores[3]))*100))
-
 

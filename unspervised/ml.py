@@ -76,8 +76,8 @@ def main():
 		color = colors[classification]
 		for features in km.classes[classification]:
 			plt.scatter(features[0], features[1], color = color,s = 30)
-	plt.xlabel('Sepal length')
-	plt.ylabel('Sepal Width')		
+	plt.xlabel('Murder')
+	plt.ylabel('Assualt')		
 	plt.show()
 
 if __name__ == "__main__":
